@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "style.css"/>
+    <title>Login</title>
+
+    <script>
+        function validate(){
+
+            var u_name = document.getElementById("username").value;
+            var pwd = document.getElementById("password").value;
+
+            if(u_name == "")
+            {
+                document.getElementById("name").innerHTML = "Username is empty!";
+                return false;
+            }
+
+            if(pwd == "")
+            {
+                document.getElementById("Password").innerHTML = "Password is empty!";
+                return false;
+            }
+
+        } 
+    </script>
+
+    <style>
+        .errors{
+            color: red;
+            margin-top: 5px;
+            font-weight: bold;
+            display: inline;
+        }
+
+        form h3{
+            margin-top: 10px;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+
+    </style>
+
+
+</head>
+<body>
+   
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="form-container">
+    <form action="Login" method="post" onsubmit="return validate()">
+        
+        <!-- <h3>Login Here</h3> -->
+        <h3>Login Here</h3>
+        <label for="username">Username</label>
+        <input type="text" name = "username" placeholder="Enter Username" id="username"><br>
+        <div class="errors" id="name"></div>
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password" id="password"><br>
+        <div class="errors" id="Password"></div>
+        <input type="submit" value="Login">
+
+
+        <span class="signUp">
+            <p>Don't have an account? </p>
+            <a href="SignUp.html">Sign Up</a>            
+        </span>
+    
+    </form>
+
+    
+</div>
+</body>
+</html>

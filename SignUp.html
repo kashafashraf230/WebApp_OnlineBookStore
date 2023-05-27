@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "style.css"/>
+    <title>SignUp</title>
+
+<script>
+function validate()
+{	
+    var phoneno = /^\d{11}$/;
+    
+    if ( document.user.firstName.value == "" )
+	    {
+            document.getElementById("fname").innerHTML = "First Name is empty!";		
+			return false;
+	    }
+
+    if ( !(/^[A-Za-z]+$/.test(document.user.firstName.value)))
+	    {
+            document.getElementById("fname").innerHTML = "Only alphabtes are allowed in FirstName!";		
+			return false;
+	    }
+
+    if ( document.user.lastName.value == "" )
+	    {
+            document.getElementById("lname").innerHTML = "Last Name is empty!!";		
+			return false;
+	    }
+
+     if ( !(/^[A-Za-z]+$/.test(document.user.lastName.value)))
+	    {
+            document.getElementById("lname").innerHTML = "Only alphabets are allowed in Last Name!";		
+			return false;
+	    }
+
+	if ( document.user.username.value == "" )
+	    {
+            document.getElementById("uname").innerHTML = "Username is empty!!";		
+			return false;
+	    }
+
+    if ( document.user.contact_no.value == "" )
+	{		
+        document.getElementById("cnum").innerHTML = "Contact no is empty!!";
+			return false;
+	}
+
+    if(!document.user.contact_no.value.match(phoneno))
+    {
+        document.getElementById("cnum").innerHTML = "Contact Number Format wrong!!";
+			return false;
+    }
+			 
+	if ( document.user.email.value == "" )		
+    {
+        document.getElementById("email").innerHTML = "Please enter email address!";
+		return false;
+	}	
+
+
+	if(document.user.password.value == "")	
+	   {
+            document.getElementById("pwd").innerHTML = "Password is empty!!";
+			return false;
+	   }	
+
+	if(document.user.password.value!=document.user.confirm_password.value)
+	{   
+         document.getElementById("con_pwd").innerHTML = "New Password and Confirm new Password doesn't match";
+			return false;
+	}
+
+	
+	return true;
+
+}
+
+function match_pass(){
+
+    if(document.user.password.value!=document.user.confirm_password.value)
+	{   
+         document.getElementById("confirm_password").style.borderColor="red";
+         document.getElementById("con_pwd").innerHTML = "<p style='color:red; font-size:small'>Passwords donot match</p>";
+			return false;
+	}
+    document.getElementById("confirm_password").style.borderColor = "green";	
+	document.getElementById("con_pwd").innerHTML = "";
+    return true;
+
+}
+
+
+function letternumber(event)
+	{
+		var keychar;
+			
+		keychar = event.key;
+		if (((".+-0123456789").indexOf(keychar) > -1))
+		   return true;
+		else{
+            document.getElementById("cnum").innerHTML = "Contact Number Format wrong";
+		   return false;
+        }
+	}
+
+    //email format checker 
+    function valid_email2(){
+	var val = document.getElementById("email");
+    if(!val.value.match(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/)){
+		document.getElementById("errors_email").innerHTML = "<p style='color:red; font-size:small'>Invalid format. try i.e example@example.com</p>";
+        document.getElementById("email").style.borderColor = "red";
+		return false;
+    }
+    document.getElementById("email").style.borderColor = "green";	
+	document.getElementById("errors_email").innerHTML = "";
+    return true;
+}
+
+function leave(){
+    document.getElementById("email").style.borderColor = "white";
+    var email = document.getElementById("email").value;
+    if(email == ""){
+    document.getElementById("errors_email").innerHTML = "";
+    }
+    return true;    
+}
+
+function leave_pass(){
+    var pass = document.getElementById("password").value;
+    var confirm = document.getElementById("confirm_password").value;
+    if(pass == confirm)
+    {
+        document.getElementById("confirm_password").style.borderColor = "white";
+    }
+    return true;    
+}
+
+ 
+
+
+</script>
+
+<style>
+
+.errors{
+
+    color: red;
+    margin-top: 5px;
+    display: inline;
+}
+    label{
+        margin-top: 20px;
+    }
+
+    form {
+    height: 900px;
+    width: 491px;
+    top: 80%;
+    }
+
+    input[type=text], input[type=password]{
+        border: 1px solid white;
+    }
+
+    body{
+    display: flex;
+    background-size:100vw 200vh ;
+}
+
+</style>
+
+</head>
+<body>
+
+    <div class="container">
+
+        
+        <div class="signUpForm">
+
+            <form action="SignUp" name="user" method="post" id="form1" onsubmit="return validate()"> 
+                <h3>SignUp Here</h3>
+                <label for="firstName">First Name: </label>
+                <input type="text" name="firstName" placeholder="Enter First Name">
+                <div class="errors" id="fname"></div>
+                <label for="lastName">Last Name: </label>
+                <input type="text" name="lastName" id="last_name" placeholder="Enter Last Name">
+                <div class="errors" id="lname" ></div>
+                <label for="username">Username: </label>
+                <input type="text" name="username" placeholder="Enter Username">
+                <div class="errors" id="uname" > </div>
+                <label for="contact_no">Contact no: </label>
+                <input type="text" name="contact_no" placeholder="Enter Phone Number" onkeypress="return letternumber(event)" >
+                <div class="errors" id="cnum" > </div>
+                <label for="email">Email: </label>
+                <input type="text" name="email" id="email" placeholder="Enter Email"  onkeyup="valid_email2()" onfocusout="leave()">
+                <div class="errors" id="errors_email" style="color:red" > </div>
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" placeholder="Enter Password" onkeyup="match_pass()" onfocusout="leave_pass()">
+                <div class="errors" id="pwd" > </div>
+                <label for="confirm_password">Confirm Password: </label>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Enter Password Again" onkeyup="match_pass()" onfocusout="leave_pass()">
+                <div class="errors" id="con_pwd" > </div>
+                <input type="submit" value="SignUp">
+           
+            </form>
+
+        </div>
+    </div>
+    
+</body>
+</html>

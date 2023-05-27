@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="#">
+<script>
+        function validate(){
+
+            var isbn = document.getElementById("b_isbn").value;
+	    var quantity = document.getElementById("b_quantity").value;
+	    var price = document.getElementById("b_price").value;
+
+	    if(isbn == "")
+            {
+                document.getElementById("isbn").innerHTML = "ISBN is empty!";
+                return false;
+            }
+
+	    if(quantity == "")
+            {
+                document.getElementById("quantity").innerHTML = "Quantity is empty!";
+                return false;
+            }
+	    if(price == "")
+            {
+                document.getElementById("price").innerHTML = "Price is empty!";
+                return false;
+            }
+
+        } 
+    </script>
+
+<style>
+        .errors{
+            color: red;
+            margin-top: 5px;
+            font-weight: bold;
+            display: inline;
+        }
+</style>
+ 
+  
+</head>
+<body>
+<div class= "container">
+
+  <h1>Admin Panel</h1>
+    <nav class="navMenu">
+      <a href="adminView.jsp">View </a>
+      <a href="adminAdd.jsp">Add </a>
+      <a href="adminDelete.jsp">Delete</a>
+      <a href="adminUpdate.html">Update</a>
+      <a href="logout.jsp">LogOut</a>
+      <div class="dot"></div>
+    </nav>
+
+</div>
+
+
+<div class="form-container">
+    <form action= "adminUpdate.jsp" onsubmit="return validate()">
+        
+       
+        <h3>Update Book</h3>
+       
+        <label for="ISBN">ISBN</label>
+        <input type="text" name="isbn" placeholder="Enter ISBN" id="b_isbn"><br>
+        <div class="errors" id="isbn"></div><br>
+	<label for="Price">Change Price</label>
+        <input type="text" name="price" placeholder="Enter Price " id="b_price"><br>
+        <div class="errors" id="price"></div><br>
+	<label for="Quantity">Change Quantity</label>
+        <input type="text" name="quantity" placeholder="Enter Qunatity" id="b_quantity"><br>
+        <div class="errors" id="quantity"></div><br>
+        <input type="submit" value="Update">
+</div>
+
+  </body>
+
+</html>
